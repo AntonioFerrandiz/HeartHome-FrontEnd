@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Lessor from '../components/Lessor.vue'
+import Tenant from '../components/Tenant.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/lessors',
     name: 'Lessors',
     component: Lessor
+  },
+  {
+    path: '/tenants',
+    name: 'Tenants',
+    component: Tenant
   }
 ]
 
