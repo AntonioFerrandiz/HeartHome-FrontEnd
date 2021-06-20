@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Lessor from '../components/Lessor.vue'
 import Tenant from '../components/Tenant.vue'
+import Property from '../components/Property.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/tenants',
     name: 'Tenants',
     component: Tenant
+  },
+  {
+    path: '/properties',
+    name: 'Property',
+    component: Property
   }
 ]
 
