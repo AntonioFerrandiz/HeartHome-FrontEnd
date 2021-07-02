@@ -70,8 +70,6 @@
         <td>{{ item.address }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.description }}</td>
-        <td>{{ item.createdat }}</td>
-        <td>{{ item.updatedat }}</td>
         <td class="justify-center layout px-0">
           <v-icon 
             small 
@@ -109,9 +107,7 @@
             { text: 'Type', value: 'type' , sortable: false },
             { text: 'Address', value: 'address', sortable: false },
             { text: 'Name', value: 'name', sortable: false},
-            { text: 'Description', value: 'description', sortable: false },
-            { text: 'CreatedAt', value: 'createdat', sortable: false},
-            { text: 'UpdatedAt', value: 'updatedat', sortable: false},            
+            { text: 'Description', value: 'description', sortable: false },        
           ],
           search: '',
           propertyID: '',
@@ -121,8 +117,6 @@
           address: '',
           name: '',
           description: '',
-          createdat: '',
-          updatedat: '',
           properties: [],
           editedIndex: -1
         }),
@@ -164,7 +158,6 @@
               this.address = item.address;
               this.name = item.name;
               this.description = item.description;
-              this.updatedat = dateTime;
               this.editedIndex = 1;
               this.dialog = true;
             },
@@ -193,8 +186,6 @@
                 this.address = "";
                 this.name = "";
                 this.description = "";
-                this.createdat = "";
-                this.updatedat = "";
                 this.editedIndex= -1;
             },
             save() {
