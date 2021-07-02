@@ -1,13 +1,13 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="CommentProperties"
+    :items="CommentTenants"
     :search="search"
     sort-by="Comment"
     class="elevation-1" style="width:800px"><!--Se agregó el style-->
     <template v-slot:top>
       <v-toolbar flat color="white">
-        <v-toolbar-title>CRUD CommentProperty</v-toolbar-title>
+        <v-toolbar-title>CRUD CommentTenant</v-toolbar-title>
         <v-divider 
           class="mx-4" 
           inset 
@@ -15,12 +15,12 @@
         ></v-divider>
         <v-spacer></v-spacer>
         <v-text-field class="text-xs-center" v-model="search" 
-        append-icon="search" label="Search CommentProperty"  
+        append-icon="search" label="Search CommentTenant"  
         single-line hide-details></v-text-field>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">New CommentProperty</v-btn>
+            <v-btn color="primary" dark class="mb-2" v-on="on">New CommentTenant</v-btn>
           </template>
           <v-card>
             <v-card-title>
@@ -34,7 +34,7 @@
                     <v-text-field v-model="tenantID" label="TenantID"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="12" md="12">
-                    <v-text-field v-model="propertyID" label="PropertyID"></v-text-field>
+                    <v-text-field v-model="lessorID" label="LessorID"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="12" md="12">
                     <v-text-field v-model="rating" label="Rating"></v-text-field>
@@ -64,7 +64,7 @@
     <template v-slot:item="{ item }">
       <tr>
         <td>{{ item.tenantID }}</td>
-        <td>{{ item.propertyID }}</td>
+        <td>{{ item.lessorID }}</td>
         <td>{{ item.rating }}</td>
         <td>{{ item.comment }}</td>
         <td>{{ item.createdAt }}</td>
@@ -101,7 +101,7 @@
           headers: [
             { text: 'commentID', value: 'lessorID', sortable: true },
             { text: 'tenantID', value: 'tenantID', sortable: true },
-            { text: 'propertyID', value: 'propertyID', sortable: false },
+            { text: 'lessorID', value: 'lessorID', sortable: false },
             { text: 'Rating', value: 'rating' , sortable: false },
             { text: 'Comment', value: 'comment', sortable: false },
             { text: 'CreatedAt', value: 'createdAt', sortable: false},
@@ -110,17 +110,17 @@
           search: '',
           commentID: '',
           tenantID: '',
-          propertyID: '',
+          lessorID: '',
           rating: '',
           comment: '',
           createdAt: '',
           updatedAt: '',
-          commentProperties: [],
+          commentTenants: [],
           editedIndex: -1
         }),
         computed: {
           formTitle(){
-            return this.editedIndex === -1 ? 'New CommentProperty' : 'Edit CommentProperty'
+            return this.editedIndex === -1 ? 'New CommentTenant' : 'Edit CommentTenant'
           },
         },
         watch: {
@@ -134,10 +134,10 @@
         methods: {
             list(){
                 let me = this;
-                axios.get('api/CommentProperties/GetCommentProperties')
+                axios.get('api/CommentTenants/GetCommentTenants')
                 .then(function(response){
                   console.log(response);
-                  me.commentProperties = response.data;
+                  me.commentTenants = response.data;
                 }).catch(function(error){
                   console.log(error);
                 });
@@ -145,7 +145,7 @@
             editItem(item){
               this.commentID = item.commentID;
               this.tenantID = item.tenantID;
-              this.propertyID = item.propertyID;
+              this.lessorID = item.lessorID;
               this.rating = item.rating;
               this.comment = item.comment;
               this.createdAt = item.createdAt;
@@ -155,8 +155,8 @@
             },
             deleteItem (item) {
               let me = this;
-              if(confirm('¿Estás seguro que quieres eliminar este CommentProperty?'))
-                axios.delete('api/CommentProperties/'+item.commentID,{
+              if(confirm('¿Estás seguro que quieres eliminar este CommentTenant?'))
+                axios.delete('api/CommentTenants/'+item.commentID,{
                       'id': item.commentID
                 }).then(function(response){
                   console.log(item.commentID);
@@ -173,7 +173,7 @@
             clean(){
                 this.commentID = "";
                 this.tenantID = "";
-                this.propertyID = "";
+                this.lessorID = "";
                 this.rating = "";
                 this.comment = "";
                 this.createdAt = "";
@@ -182,11 +182,11 @@
             },
             save() {
               let me = this;
-              if(this.editedIndex > -1) { //Editar Comment Property
-                axios.put('api/CommentProperties/PutCommentProperty',{
+              if(this.editedIndex > -1) { //Editar Comment Tenant
+                axios.put('api/CommentTenants/PutCommentTenant',{
                           'commentID': me.commentID,
                           'tenantID': me.tenantID,
-                          'propertyID': me.propertyID,
+                          'lessorID': me.lessorID,
                           'rating': me.rating,
                           'comment': me.comment,
                           'createdAt': me.createdAt,
@@ -199,9 +199,9 @@
                   console.log(error);
                 });
               } else{
-                axios.post('api/CommentProperties',{ // Nuevo Comment Property
+                axios.post('api/CommentTenants',{ // Nuevo Comment Tenants
                           'tenantID': me.tenantID,
-                          'propertyID': me.propertyID,
+                          'lessorID': me.lessorID,
                           'rating': me.rating,
                           'comment': me.comment,
                           'createdAt': me.createdAt,

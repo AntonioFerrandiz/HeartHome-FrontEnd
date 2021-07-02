@@ -49,11 +49,11 @@
               <v-list-item-title>
                 Property
               </v-list-item-title>
-            </v-list-item-content> 
+            </v-list-item-content>
           </v-list-item>
       </template>
       <template>
-        <v-list-item :to="{name:'CommentProperty'}">
+        <v-list-item :to="{name:'CommentProperties'}">
             <v-list-item-action>
               <v-icon>table_chart</v-icon>
             </v-list-item-action> 
@@ -65,7 +65,7 @@
           </v-list-item>
       </template>
       <template>
-        <v-list-item :to="{name:'CommentTenant'}">
+        <v-list-item :to="{name:'CommentTenants'}">
             <v-list-item-action>
               <v-icon>table_chart</v-icon>
             </v-list-item-action> 
