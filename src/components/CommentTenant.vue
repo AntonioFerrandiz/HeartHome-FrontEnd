@@ -42,12 +42,6 @@
                   <v-col cols="12" sm="12" md="12">
                     <v-text-field v-model="comment" label="Comment"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="12" md="12">
-                    <v-text-field v-model="createdAt" label="CreatedAt"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="12" md="12">
-                    <v-text-field v-model="updatedAt" label="UpdatedAt"></v-text-field>
-                  </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -63,12 +57,11 @@
     </template>
     <template v-slot:item="{ item }">
       <tr>
+        <td>{{item.commentID}}</td>
         <td>{{ item.tenantID }}</td>
         <td>{{ item.lessorID }}</td>
         <td>{{ item.rating }}</td>
         <td>{{ item.comment }}</td>
-        <td>{{ item.createdAt }}</td>
-        <td>{{ item.updatedAt }}</td>
         <td class="justify-center layout px-0">
           <v-icon 
             small 
@@ -104,8 +97,6 @@
             { text: 'lessorID', value: 'lessorID', sortable: false },
             { text: 'Rating', value: 'rating' , sortable: false },
             { text: 'Comment', value: 'comment', sortable: false },
-            { text: 'CreatedAt', value: 'createdAt', sortable: false},
-            { text: 'UpdatedAt', value: 'updatedAt', sortable: false},
           ],
           search: '',
           commentID: '',
@@ -113,8 +104,6 @@
           lessorID: '',
           rating: '',
           comment: '',
-          createdAt: '',
-          updatedAt: '',
           commentTenants: [],
           editedIndex: -1
         }),
@@ -148,8 +137,6 @@
               this.lessorID = item.lessorID;
               this.rating = item.rating;
               this.comment = item.comment;
-              this.createdAt = item.createdAt;
-              this.updatedAt = item.updatedAt;
               this.editedIndex = 1;
               this.dialog = true;
             },
@@ -176,8 +163,6 @@
                 this.lessorID = "";
                 this.rating = "";
                 this.comment = "";
-                this.createdAt = "";
-                this.updatedAt = "";
                 this.editedIndex= -1;
             },
             save() {
@@ -189,8 +174,6 @@
                           'lessorID': me.lessorID,
                           'rating': me.rating,
                           'comment': me.comment,
-                          'createdAt': me.createdAt,
-                          'updatedAt': me.updatedAt
                 }).then(function(response){
                   me.close();
                   me.list();
@@ -204,8 +187,6 @@
                           'lessorID': me.lessorID,
                           'rating': me.rating,
                           'comment': me.comment,
-                          'createdAt': me.createdAt,
-                          'updatedAt': me.updatedAt
                 }).then(function(response){
                   me.close();
                   me.list();
