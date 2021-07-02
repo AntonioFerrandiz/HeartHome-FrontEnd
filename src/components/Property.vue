@@ -4,7 +4,7 @@
     :items="properties"
     :search="search"
     sort-by="name"
-    class="elevation-1" style="width:800px"><!--Se agregó el style-->
+    class="elevation-1" style="width:1000px"><!--Se agregó el style-->
     <template v-slot:top>
       <v-toolbar flat color="white">
         <v-toolbar-title>CRUD Properties</v-toolbar-title>
