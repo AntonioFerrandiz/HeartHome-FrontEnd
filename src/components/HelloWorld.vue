@@ -10,142 +10,82 @@
         />
       </v-col>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
+      <v-col class="mb-">
+        <h1 class="display-2 font-weight-bold mb-3">Bienvenidos a Hearthome</h1>
 
         <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
+          La manera más sencilla de encontrar tu nuevo hogar.<br />
+          Explora y descubre un lugar que se adecúe a tus nececidades.
         </p>
       </v-col>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
+      <v-col class="mb-5" cols="12">
+        <v-card class="mx-auto" max-width="500">
+          <v-card-title class="justify-center"
+            >Propiedades que te pueden interesar</v-card-title
           >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
+          <v-container fluid>
+            <v-row dense>
+              <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
+                <v-card>
+                  <router-link to="/properties/Casa" style="text-decoration: none; color: inherit;">
+                    <v-img
+                      :src="card.src"
+                      class="white--text align-end"
+                      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                      height="350px"
+                    >
+                      <v-card-title v-text="card.title"></v-card-title>
+                    </v-img>
+                  </router-link>
+                  <!--<router-link to="/">
+    <v-img src="require('@/assets/my-image.png')"></v-img>
+</router-link>-->
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
 
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
+                    <v-rating
+                      v-model="rating"
+                      background-color="orange lighten-3"
+                      color="orange"
+                      density="compact"
+                      half-increments
+                      hover
+                      size="18"
+                    ></v-rating>
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-  export default {
-    name: 'HelloWorld',
-
-    data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
-    }),
-  }
+export default {
+  data: () => ({
+    cards: [
+      {
+        title: "Departamentos",
+        src: "http://www.construnoticias.com/peru/wp-content/uploads/2019/09/departamentos-lima.jpg",
+        flex: 12,
+      },
+      {
+        title: "Casa Punta Sal",
+        src: "https://casatatipuntasal.com/wp-content/uploads/2020/06/collage1-1.jpg",
+        flex: 6,
+      },
+      {
+        title: "Casa de Campo",
+        src: "https://images.homify.com/c_fill,f_auto,h_500,q_auto,w_1280/v1461736282/p/photo/image/1478928/mv_chontay_02.jpg",
+        flex: 6,
+      },
+    ],
+    rating: 0,
+  }),
+};
 </script>
