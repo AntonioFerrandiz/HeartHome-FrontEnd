@@ -5,6 +5,7 @@ import Lessor from '../components/Lessor.vue'
 import Tenant from '../components/Tenant.vue'
 import Property from '../components/Property.vue'
 import ViewProperty from '../components/ViewProperty.vue'
+import CommentProperty from '../components/CommentProperty.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/properties/Casa',
     name: 'Casa Campo',
     component: ViewProperty
+  },
+  {
+    path: '/commentProperties',
+    name: 'CommentProperty',
+    component: CommentProperty
   }
 ]
 
