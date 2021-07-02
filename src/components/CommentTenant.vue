@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="CommentTenants"
+    :items="commentTenants"
     :search="search"
     sort-by="Comment"
     class="elevation-1" style="width:800px"><!--Se agregó el style-->
