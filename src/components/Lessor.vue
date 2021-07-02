@@ -51,8 +51,8 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn><!--Antes <v-btn>-->
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn><!--Antes <v-btn>-->
+              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -97,8 +97,8 @@
           dialog: false,
           headers: [
             { text: 'lessorID', value: 'lessorID', sortable: true },
-            { text: 'Firstname', value: 'firstName', sortable: false },
-            { text: 'Lastname', value: 'lastname' , sortable: false },
+            { text: 'Firstname', value: 'firstName', sortable: true },
+            { text: 'Lastname', value: 'lastname' , sortable: true },
             { text: 'Email', value: 'email', sortable: false },
             { text: 'DNI', value: 'dni', sortable: false},
             { text: 'Phone', value: 'phone', sortable: false},
@@ -129,7 +129,7 @@
         methods: {
             list(){
                 let me = this;
-                axios.get('api/Lessors')
+                axios.get('api/Lessors/GetLessors')
                 .then(function(response){
                   //console.log(response);
                   me.lessors = response.data;

@@ -48,20 +48,14 @@
                   <v-col cols="12" sm="12" md="12">
                     <v-text-field v-model="description" label="Description"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="12" md="12">
-                    <v-text-field v-model="createdat" label="CreatedAt"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="12" md="12">
-                    <v-text-field v-model="updatedat" label="UpdatedAt"></v-text-field>
-                  </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn><!--Antes <v-btn>-->
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn><!--Antes <v-btn>-->
+              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -101,6 +95,7 @@
     </template>
   </v-data-table>
 </template>
+
 
 <script>
     import axios from 'axios'
@@ -145,9 +140,15 @@
             this.list();
         },
         methods: {
+            getCurrencyDate(){
+              let current = new Date();
+              let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+              let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+              let dateTime = cDate + ' ' + cTime;
+            },
             list(){
                 let me = this;
-                axios.get('api/Properties')
+                axios.get('api/Properties/GetProperties')
                 .then(function(response){
                   //console.log(response);
                   me.properties = response.data;
@@ -163,8 +164,7 @@
               this.address = item.address;
               this.name = item.name;
               this.description = item.description;
-              this.createdat = item.createdat;
-              this.updatedat = item.updatedat;
+              this.updatedat = dateTime;
               this.editedIndex = 1;
               this.dialog = true;
             },
@@ -208,8 +208,8 @@
                           'address': me.address,
                           'name': me.name,
                           'description': me.description,
-                          'createdat': me.createdat,
-                          'updatedat': me.updatedat
+                          'createdat': dateTime,
+                          'updatedat': dateTime
                 }).then(function(response){
                   me.close();
                   me.list();
@@ -218,15 +218,15 @@
                   console.log(error);
                 });
               } else{
-                axios.post('api/Properties',{ // Nuevo Property
+                axios.post('api/Properties/PostProperty/'+item.lessorID,{ // Nuevo Property
                            'lessorID': me.lessorID,
                            'district': me.district,
                            'type': me.type,
                            'address': me.address,
                            'name': me.name,
                            'description': me.description,
-                           'createdat': me.createdat,
-                           'updatedat': me.updatedat
+                           'createdat': dateTime,
+                           'updatedat': dateTime
                 }).then(function(response){
                   me.close();
                   me.list();
