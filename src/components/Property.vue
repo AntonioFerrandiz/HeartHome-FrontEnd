@@ -207,9 +207,7 @@
                           'type': me.type,
                           'address': me.address,
                           'name': me.name,
-                          'description': me.description,
-                          'createdat': dateTime,
-                          'updatedat': dateTime
+                          'description': me.description
                 }).then(function(response){
                   me.close();
                   me.list();
@@ -218,15 +216,13 @@
                   console.log(error);
                 });
               } else{
-                axios.post('api/Properties/PostProperty/'+item.lessorID,{ // Nuevo Property
+                axios.post('api/Properties/PostProperty/'+me.lessorID,{ // Nuevo Property
                            'lessorID': me.lessorID,
                            'district': me.district,
                            'type': me.type,
                            'address': me.address,
                            'name': me.name,
-                           'description': me.description,
-                           'createdat': dateTime,
-                           'updatedat': dateTime
+                           'description': me.description
                 }).then(function(response){
                   me.close();
                   me.list();
